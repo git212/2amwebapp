@@ -11,6 +11,6 @@
 ## Build maven project
 
 ```
- cd 6pmwebapp
+ cd 2amwebapp
  mvn package
 ```
