@@ -5,7 +5,7 @@
 ## 1. Create maven project
 
 ```
-  mvn archetype:generate -DgroupId=in.javahome -DartifactId=6pmwebapp -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeVersion=1.4 -DinteractiveMode=false 
+  mvn archetype:generate -DgroupId=in.javahome -DartifactId=2amwebapp -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeVersion=1.4 -DinteractiveMode=false
 ```
 
 ## Build maven project
