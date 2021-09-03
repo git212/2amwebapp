@@ -1,7 +1,8 @@
 pipeline{
 	agent any
-	Environment{
-                PATH = “${PATH} : {tool name: 'maven3', type: 'maven'}/bin
+	environment{
+          PATH = “${PATH} :${tool name: 'maven3', type: 'maven'}/bin"
+        }
 	stages{
 		stage('SCM Checkout'){
 			steps{
@@ -13,7 +14,7 @@ pipeline{
 		
 		stage('Maven Build'){
 			steps{
-			       sh  script: “mvn  clean package”
+			    sh “mvn  clean package”
 			}
 		}
 	}
