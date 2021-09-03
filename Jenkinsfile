@@ -1,9 +1,22 @@
-node{
-  stage('SCM Checkout'){
-    def mvn Home = tool name 'maven3',type:'maven3'
-    git url
-  }
-  stage('compile - package'){
-    sh'mvn package'
-  }
+pipeline{
+	agent any
+	
+	stages{
+		stage('SCM Checkout'){
+			steps{
+				git credentialsId: 'github', 
+					url: 'https://github.com/git212/2amwebapp', 
+					branch: 'master'
+			}
+		}
+		
+		stage('Maven Build'){
+			steps{
+				script{
+					def mvnHome = tool name: 'maven3', type: 'maven'
+					sh  script: "${mvnHome}/bin/mvn  clean package"
+				}
+			}
+		}
+	}
 }
