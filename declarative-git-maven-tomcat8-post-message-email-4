@@ -11,6 +11,7 @@ pipeline{
 				credentialsId: 'github'
 			}
 		}
+		
 		stage('Maven Build'){
 			steps{
 				sh 'mvn clean package'
@@ -31,19 +32,11 @@ pipeline{
 	}
 	post{
         success{
-			mail body: """Hi Team,The app is successfully deployed
-            ${BUILD_URL}
-Thanks,
-DevOps Team.
-Java Home""", subject: "${JOB_NAME} - Successfully Deployed", to: 'bharatmahanta05@gmail.com'
+			mail body: '''Hi Team,The app is successfully deployed
+
+Thanks.
+DevOps Team
+Java Home''', subject: 'Successfully Deployed', to: 'bharatmahanta05@gmail.com'
         }
     }
-	    failure{
-			mail body: """Hi Team,The app is deployment failed
-            ${BUILD_URL}
-Thanks,
-DevOps Team.
-Java Home""", subject: "${JOB_NAME} - Deployment failed", to: 'bharatmahanta05@gmail.com'
-        }
-	}
 }
