@@ -46,4 +46,3 @@ DevOps Team.
 Java Home""", subject: "${JOB_NAME} - Deployment failed", to: 'bharatmahanta05@gmail.com'
         }
 	}
-}
