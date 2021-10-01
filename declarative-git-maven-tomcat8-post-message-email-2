@@ -1,0 +1,42 @@
+pipeline{
+	agent any
+	environment{
+		PATH = "${PATH}:${tool name: 'maven3', type: 'maven'}/bin"
+	}
+	stages{
+		stage('SCM Checkout'){
+			steps{
+				git url: 'https://github.com/git212/2amwebapp', 
+				branch: 'master',
+				credentialsId: 'github'
+			}
+		}
+		
+		stage('Maven Build'){
+			steps{
+				sh 'mvn clean package'
+			}
+		}
+		stage('Deploy Dev'){
+		    steps{
+				sshagent(['tomcat-dev']) {
+					// stop tomcat
+					sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.6.253 /opt/tomcat8/bin/shutdown.sh"
+					// copy war file to remote tomcat
+					sh "scp target/2amwebapp.war  ec2-user@172.31.6.253:/opt/tomcat8/webapps/"
+					// start tomcat
+					sh "ssh ec2-user@172.31.6.253 /opt/tomcat8/bin/startup.sh"
+				}
+			}
+		}
+	}
+	post{
+        success{
+			mail body: '''Hi Team,The app is successfully deployed
+
+Thanks.
+DevOps Team
+Java Home''', subject: 'Successfully Deployed', to: 'bharatmahanta05@gmail.com'
+        }
+    }
+}
