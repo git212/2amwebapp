@@ -10,14 +10,15 @@ pipeline{
 				credentialsId: 'github'
 			}
 		}
-		stage('SCM Checkout'){
+		stage('Maven Build'){
 			steps{
-				git url: 'https://github.com/git212/2amwebapp', 
-				branch: 'master',
-				credentialsId: 'github'
+				sh "mvn clean package"
 			}
 		}
 		stage('Deploy - Dev'){
+			steps{
+				echo "deploy to dev server"
+			}
 
 		}
     }
