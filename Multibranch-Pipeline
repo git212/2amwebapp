@@ -1,0 +1,24 @@
+pipeline{
+	agent any
+	environment{
+		PATH = "${PATH}:${tool name: 'maven3', type: 'maven'}/bin"
+	stages{
+		stage('SCM Checkout'){
+			steps{
+				git url: 'https://github.com/git212/2amwebapp', 
+				branch: 'master',
+				credentialsId: 'github'
+			}
+		}
+		stage('SCM Checkout'){
+			steps{
+				git url: 'https://github.com/git212/2amwebapp', 
+				branch: 'master',
+				credentialsId: 'github'
+			}
+		}
+		stage('Deploy - Dev'){
+
+		}
+    }
+}
