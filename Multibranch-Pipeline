@@ -10,16 +10,17 @@ pipeline{
 				credentialsId: 'github'
 			}
 		}
+
 		stage('Maven Build'){
 			steps{
 				sh "mvn clean package"
 			}
 		}
+		
 		stage('Deploy - Dev'){
 			steps{
 				echo "deploy to dev server"
 			}
-
 		}
     }
 }
