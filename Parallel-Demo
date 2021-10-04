@@ -2,7 +2,7 @@ pipeline{
 	agent any
 	stages{
 		stage('Parallel Demo'){
-			steps{}
+			steps{
 			    parallel(
 				  task1: {
 				    echo"This is task1"
