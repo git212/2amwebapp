@@ -13,7 +13,7 @@ node{
     }
     
     stage('Deploy Dev'){
-        echo "Deploy to dev - comming son..."
+        echo "Deploy to dev - comming soon..."
     }
     
 }
